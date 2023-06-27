@@ -1,7 +1,7 @@
 ## api for pyrisk
 
 ### api and database
-Even api is not required for the scale of the application https://github.com/karlcc/pyrisk, it should facilitate Distributed computing if more complex metric computing is added later.
+Even api is not required for the scale of the application https://github.com/karlcc/pyrisk, it should help facilitate Distributed computing if more complex metric computing is added later.
 
 ORM is purposed in the design of database. It should help doing simplification of database.
 
