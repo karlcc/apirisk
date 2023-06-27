@@ -3,7 +3,7 @@
 ### api and database
 Even api is not required for the scale of the application https://github.com/karlcc/pyrisk, it should help Distributed computing if more complex metric computing is added later.
 
-ORM is purposed in the design of database. It should help simplification of database.
+ORM is purposed in the design of database. It should help doing simplification of database.
 
 Project structure:
 ```
