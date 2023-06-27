@@ -34,7 +34,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to karlcc application." });
 });
 
-require("./app/routes/assets.routes")(app);
+require("./app/routes/asset.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

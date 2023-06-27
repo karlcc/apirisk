@@ -19,6 +19,19 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
-db.assets = require("./assets.model.js")(sequelize, Sequelize);
+db.assets = require("./asset.model.js")(sequelize, Sequelize);
+db.hists = require("./hist.model.js")(sequelize, Sequelize);
+db.eqs = require("./eq_safef.model.js")(sequelize, Sequelize);
+
+db.assets.hasMany(db.hists,{ as: "hists"});
+db.assets.hasMany(db.eqs,{ as: "eq_safef"});
+db.hists.belongsTo(db.assets, {
+    foreignKey: "assetId",
+    as: "asset",
+});
+db.eqs.belongsTo(db.assets, {
+    foreignKey: "assetId",
+    as: "asset",
+});
 
 module.exports = db;
