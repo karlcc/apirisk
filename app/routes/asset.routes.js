@@ -9,9 +9,6 @@ module.exports = app => {
     // Retrieve all assets
     router.get("/", assets.findAll);
   
-    // Retrieve all published assets
-    router.get("/published", assets.findAllPublished);
-  
     // Retrieve a single Asset with id
     router.get("/:id", assets.findOne);
   

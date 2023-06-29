@@ -4,38 +4,50 @@ const Op = db.Sequelize.Op;
 
 // Create and Save a new Asset
 exports.create = (req, res) => {
-  // Validate request
-  if (!req.body.title) {
-    res.status(400).send({
-      message: "Content can not be empty!"
-    });
-    return;
-  }
+    // Validate request
+    if (!req.body.name) {
+        res.status(400).send({
+            message: "Name can not be empty!"
+        });
+        return;
+    }
+    if (!req.body.fromdate) {
+        res.status(400).send({
+            message: "Fromdate can not be empty!"
+        });
+        return;
+    }
+    if (!req.body.todate) {
+        res.status(400).send({
+            message: "Todate can not be empty!"
+        });
+        return;
+    }
 
-  // Create a Asset
-  const Asset = {
-    title: req.body.title,
-    description: req.body.description,
-    published: req.body.published ? req.body.published : false
-  };
+    // Create a Asset
+    const asset = {
+        name: req.body.name,
+        fromdate: req.body.fromdate,
+        todate: req.body.todate,
+    };
 
-  // Save Asset in the database
-  Asset.create(Asset)
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the Asset."
-      });
-    });
+    // Save Asset in the database
+    Asset.create(asset)
+        .then(data => {
+        res.send(data);
+        })
+        .catch(err => {
+        res.status(500).send({
+            message:
+            err.message || "Some error occurred while creating the Asset."
+        });
+        });
 };
 
 // Retrieve all assets from the database.
 exports.findAll = (req, res) => {
-  const title = req.query.title;
-  var condition = title ? { title: { [Op.iLike]: `%${title}%` } } : null;
+  const name = req.query.name;
+  var condition = name ? { name: { [Op.iLike]: `%${name}%` } } : null;
 
   Asset.findAll({ where: condition })
     .then(data => {
@@ -49,7 +61,7 @@ exports.findAll = (req, res) => {
     });
 };
 
-// Find a single Asset with an id
+// Find a single asset with an id
 exports.findOne = (req, res) => {
   const id = req.params.id;
 
@@ -78,7 +90,7 @@ exports.update = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot update Asset with id=${id}. Maybe Asset was not found or req.body is empty!`
+          message: `Cannot update asset with id=${id}. Maybe Asset was not found or req.body is empty!`
         });
       }
     })
@@ -103,7 +115,7 @@ exports.delete = (req, res) => {
         });
       } else {
         res.send({
-          message: `Cannot delete Asset with id=${id}. Maybe Asset was not found!`
+          message: `Cannot delete asset with id=${id}. Maybe asset was not found!`
         });
       }
     })
@@ -116,7 +128,7 @@ exports.delete = (req, res) => {
 
 // Delete all assets from the database.
 exports.deleteAll = (req, res) => {
-  Asset.destroy({
+    Asset.destroy({
     where: {},
     truncate: false
   })
@@ -127,20 +139,6 @@ exports.deleteAll = (req, res) => {
       res.status(500).send({
         message:
           err.message || "Some error occurred while removing all assets."
-      });
-    });
-};
-
-// find all published Asset
-exports.findAllPublished = (req, res) => {
-  Asset.findAll({ where: { published: true } })
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving assets."
       });
     });
 };
