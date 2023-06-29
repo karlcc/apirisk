@@ -41,8 +41,12 @@ db.sync = async () => {
 db.insertInitialData = async () => {
     // Insert preset data here
     const assets = [
-        { name: 'spy', fromdate: '2019-1-1', todate: '2021-1-1' },
-        { name: 'nvda', fromdate: '2019-1-1', todate: '2021-1-1' },
+        { name: 'spy', fromdate: '2019-01-01', todate: '2021-01-01' },
+        { name: 'nvda', fromdate: '2019-01-01', todate: '2021-01-01' },
+        { name: 'gld', fromdate: '2019-01-01', todate: '2021-01-01' },
+        { name: 'lqd', fromdate: '2019-01-01', todate: '2021-01-01' },
+        { name: 'tip', fromdate: '2019-01-01', todate: '2021-01-01' },
+        { name: 'shy', fromdate: '2019-01-01', todate: '2021-01-01' },
     ];
 
     await db.assets.bulkCreate(assets);

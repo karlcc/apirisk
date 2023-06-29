@@ -41,7 +41,7 @@ async function syncAndInitialize() {
         console.log("Failed to sync db: " + err.message);
     }
 }
-
+//
 syncAndInitialize();
 
 // // drop the table if it already exists
@@ -55,6 +55,7 @@ app.get("/", (req, res) => {
 });
 
 require("./app/routes/asset.routes")(app);
+require("./app/routes/hist.routes")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
