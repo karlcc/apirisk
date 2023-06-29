@@ -1,17 +1,19 @@
-## api for pyrisk
+## API for pyrisk
 
-### api and database
+### API and database
 Even api is not required for the scale of the application https://github.com/karlcc/pyrisk, it should help facilitate Distributed computing if more complex metric computing is added later.
 
 ORM is purposed in the design of database. It should help doing simplification of database.
+
+In this project, SQL, NOSQL and cluster will be implemented to test server performance at any heavy loading at extreme cases. For example, heavy metric computing or heavy database query.
 
 Project structure:
 ```
 
 ```
 
-### database model
-Assets table
+### Database model
+Assets table:
 ```javascript
 const Asset = sequelize.define("asset", {
     name: {
@@ -38,7 +40,7 @@ const Asset = sequelize.define("asset", {
 });
 ```
 
-Hists table
+Hists table:
 ```javascript
 const Hist = sequelize.define("hist", {
     trade_id: {
@@ -56,7 +58,7 @@ const Hist = sequelize.define("hist", {
 });
 ```
 
-Eqs table
+Eqs table:
 ```javascript
 const Eq_safef = sequelize.define("eq_safef", {
     curve: {
@@ -65,7 +67,7 @@ const Eq_safef = sequelize.define("eq_safef", {
 });
 ```
 
-One to Many Relationship
+One to Many Relationship:
 ```javascript
 db.assets.hasMany(db.hists,{ as: "hists"});
 db.assets.hasMany(db.eqs,{ as: "eq_safef"});
