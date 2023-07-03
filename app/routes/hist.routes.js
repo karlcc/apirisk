@@ -9,5 +9,8 @@ module.exports = app => {
     // Retrieve all hists
     router.get("/", hists.findAll);
 
+    // Retrieve one hist
+    router.get("/:id", hists.findOne);
+
     app.use('/api/hists', router);
   };
